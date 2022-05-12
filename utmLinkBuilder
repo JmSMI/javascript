@@ -1,0 +1,32 @@
+/**
+ * author james moffat
+ * version .1
+ * date may 2022
+ * 
+ * converts a link to a utm link given some or all parameters
+ */
+function makeUtmLink(url, source, medium, campaign, content, unused) 
+{
+  let utmUrl  = url;
+  let utmPath = '?';
+
+  if(unused) return "check function. Missing logic."
+
+  if(!source && !medium && !campaign && !content && !unused)
+  {
+    utmPath = '';
+  }
+  else if(utmUrl.includes('?'))
+  {
+    utmPath = '&';
+  }
+
+  if(source)   utmPath += 'utm_source='    + source;
+  if(medium)   utmPath += '&utm_medium='   + medium;
+  if(campaign) utmPath += '&utm_campaign=' + campaign;
+  if(content)  utmPath += '&utm_content='  + content;
+  //if(unused)  utmPath += '&utm_...='  + "...";
+
+  utmUrl += utmPath;
+  return utmUrl;
+}
